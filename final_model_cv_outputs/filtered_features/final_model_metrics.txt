@@ -1,0 +1,3 @@
+Best Model: MLP_2Layer_Regularized
+Train Macro-F1: 0.7130
+Test Macro-F1: 0.4968
