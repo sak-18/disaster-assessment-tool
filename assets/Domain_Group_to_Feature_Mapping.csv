@@ -1,0 +1,100 @@
+domain_group,feature_name
+Agriculture and Land Use,News_Agriculture
+Agriculture and Land Use,Reddit_Agriculture
+Agriculture and Land Use,transition_0_1
+Agriculture and Land Use,transition_1_0
+Agriculture and Land Use,transition_1_1
+Agriculture and Land Use,transition_1_2
+Agriculture and Land Use,transition_1_3
+Agriculture and Land Use,transition_1_4
+Agriculture and Land Use,transition_1_5
+Agriculture and Land Use,transition_1_6
+Agriculture and Land Use,transition_1_7
+Agriculture and Land Use,transition_1_8
+Agriculture and Land Use,transition_2_1
+Agriculture and Land Use,transition_3_1
+Agriculture and Land Use,transition_4_1
+Agriculture and Land Use,transition_5_1
+Agriculture and Land Use,transition_6_1
+Agriculture and Land Use,transition_7_1
+Agriculture and Land Use,transition_8_1
+Human Impact,News_Fatalities
+Human Impact,News_Injuries
+Human Impact,Reddit_Fatalities
+Human Impact,Reddit_Injuries
+Infrastructure Damage,News_Buildings
+Infrastructure Damage,News_Infrastructure
+Infrastructure Damage,News_Power Lines
+Infrastructure Damage,News_Roofs
+Infrastructure Damage,Reddit_Buildings
+Infrastructure Damage,Reddit_Infrastructure
+Infrastructure Damage,Reddit_Power Lines
+Infrastructure Damage,Reddit_Roofs
+Infrastructure Damage,transition_0_4
+Infrastructure Damage,transition_2_4
+Infrastructure Damage,transition_3_4
+Infrastructure Damage,transition_4_0
+Infrastructure Damage,transition_4_2
+Infrastructure Damage,transition_4_3
+Infrastructure Damage,transition_4_4
+Infrastructure Damage,transition_4_5
+Infrastructure Damage,transition_4_6
+Infrastructure Damage,transition_4_7
+Infrastructure Damage,transition_4_8
+Infrastructure Damage,transition_5_4
+Infrastructure Damage,transition_6_4
+Infrastructure Damage,transition_7_4
+Infrastructure Damage,transition_8_4
+Other Transitions,transition_2_2
+Other Transitions,transition_2_5
+Other Transitions,transition_2_6
+Other Transitions,transition_2_7
+Other Transitions,transition_2_8
+Other Transitions,transition_5_2
+Other Transitions,transition_5_5
+Other Transitions,transition_5_6
+Other Transitions,transition_5_7
+Other Transitions,transition_5_8
+Other Transitions,transition_6_2
+Other Transitions,transition_6_5
+Other Transitions,transition_6_6
+Other Transitions,transition_6_7
+Other Transitions,transition_6_8
+Other Transitions,transition_7_2
+Other Transitions,transition_7_5
+Other Transitions,transition_7_6
+Other Transitions,transition_7_7
+Other Transitions,transition_7_8
+Other Transitions,transition_8_2
+Other Transitions,transition_8_5
+Other Transitions,transition_8_6
+Other Transitions,transition_8_7
+Other Transitions,transition_8_8
+Transportation and Vehicles,News_Vehicles
+Transportation and Vehicles,Reddit_Vehicles
+Vegetation and Environment,News_Trees
+Vegetation and Environment,Reddit_Trees
+Vegetation and Environment,transition_0_0
+Vegetation and Environment,transition_0_2
+Vegetation and Environment,transition_0_3
+Vegetation and Environment,transition_0_5
+Vegetation and Environment,transition_0_6
+Vegetation and Environment,transition_0_7
+Vegetation and Environment,transition_0_8
+Vegetation and Environment,transition_2_0
+Vegetation and Environment,transition_2_3
+Vegetation and Environment,transition_3_0
+Vegetation and Environment,transition_3_2
+Vegetation and Environment,transition_3_3
+Vegetation and Environment,transition_3_5
+Vegetation and Environment,transition_3_6
+Vegetation and Environment,transition_3_7
+Vegetation and Environment,transition_3_8
+Vegetation and Environment,transition_5_0
+Vegetation and Environment,transition_5_3
+Vegetation and Environment,transition_6_0
+Vegetation and Environment,transition_6_3
+Vegetation and Environment,transition_7_0
+Vegetation and Environment,transition_7_3
+Vegetation and Environment,transition_8_0
+Vegetation and Environment,transition_8_3
