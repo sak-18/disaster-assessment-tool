@@ -1,0 +1,66 @@
+{
+  "DAG_1_Independent": {
+    "Vegetation Loss": [
+      "Property_Damage_GT"
+    ],
+    "Agricultural Loss": [
+      "Property_Damage_GT"
+    ],
+    "Infrastructural Damage": [
+      "Property_Damage_GT"
+    ],
+    "Mobility & Access Disruption": [
+      "Property_Damage_GT"
+    ],
+    "Flood & Water Surface Increase": [
+      "Property_Damage_GT"
+    ],
+    "Other Indicators": [
+      "Property_Damage_GT"
+    ]
+  },
+  "DAG_2_Infrastructure_Mediator": {
+    "Flood & Water Surface Increase": [
+      "Infrastructural Damage"
+    ],
+    "Infrastructural Damage": [
+      "Mobility & Access Disruption",
+      "Property_Damage_GT"
+    ],
+    "Mobility & Access Disruption": [
+      "Property_Damage_GT"
+    ],
+    "Vegetation Loss": [
+      "Infrastructural Damage"
+    ],
+    "Agricultural Loss": [
+      "Property_Damage_GT"
+    ],
+    "Other Indicators": [
+      "Property_Damage_GT"
+    ]
+  },
+  "DAG_3_Flood_Driven": {
+    "Flood & Water Surface Increase": [
+      "Vegetation Loss",
+      "Infrastructural Damage",
+      "Agricultural Loss",
+      "Mobility & Access Disruption"
+    ],
+    "Vegetation Loss": [
+      "Property_Damage_GT"
+    ],
+    "Infrastructural Damage": [
+      "Property_Damage_GT"
+    ],
+    "Agricultural Loss": [
+      "Property_Damage_GT"
+    ],
+    "Mobility & Access Disruption": [
+      "Property_Damage_GT"
+    ],
+    "Other Indicators": [
+      "Property_Damage_GT"
+    ]
+  }
+}

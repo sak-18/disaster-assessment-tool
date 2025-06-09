@@ -1,0 +1,98 @@
+Feature,Group
+transition_1_0,Vegetation Loss
+transition_1_1,Vegetation Loss
+transition_1_2,Vegetation Loss
+transition_1_3,Vegetation Loss
+transition_1_4,Vegetation Loss
+transition_1_5,Vegetation Loss
+transition_1_6,Vegetation Loss
+transition_1_7,Vegetation Loss
+transition_1_8,Vegetation Loss
+transition_2_0,Vegetation Loss
+transition_2_1,Vegetation Loss
+transition_2_2,Vegetation Loss
+transition_2_3,Vegetation Loss
+transition_2_4,Vegetation Loss
+transition_2_5,Vegetation Loss
+transition_2_6,Vegetation Loss
+transition_2_7,Vegetation Loss
+transition_2_8,Vegetation Loss
+transition_5_0,Vegetation Loss
+transition_5_1,Vegetation Loss
+transition_5_2,Vegetation Loss
+transition_5_3,Vegetation Loss
+transition_5_4,Vegetation Loss
+transition_5_5,Vegetation Loss
+transition_5_6,Vegetation Loss
+transition_5_7,Vegetation Loss
+transition_5_8,Vegetation Loss
+News_Trees,Vegetation Loss
+Reddit_Trees,Vegetation Loss
+transition_4_0,Agricultural Loss
+transition_4_1,Agricultural Loss
+transition_4_2,Agricultural Loss
+transition_4_3,Agricultural Loss
+transition_4_4,Agricultural Loss
+transition_4_5,Agricultural Loss
+transition_4_6,Agricultural Loss
+transition_4_7,Agricultural Loss
+transition_4_8,Agricultural Loss
+News_Agriculture,Agricultural Loss
+Reddit_Agriculture,Agricultural Loss
+transition_6_0,Infrastructural Damage
+transition_6_1,Infrastructural Damage
+transition_6_2,Infrastructural Damage
+transition_6_3,Infrastructural Damage
+transition_6_4,Infrastructural Damage
+transition_6_5,Infrastructural Damage
+transition_6_6,Infrastructural Damage
+transition_6_7,Infrastructural Damage
+transition_6_8,Infrastructural Damage
+News_Buildings,Infrastructural Damage
+Reddit_Buildings,Infrastructural Damage
+News_Roofs,Infrastructural Damage
+Reddit_Roofs,Infrastructural Damage
+News_Power Lines,Infrastructural Damage
+Reddit_Power Lines,Infrastructural Damage
+News_Infrastructure,Infrastructural Damage
+Reddit_Infrastructure,Infrastructural Damage
+News_Vehicles,Mobility & Access Disruption
+Reddit_Vehicles,Mobility & Access Disruption
+transition_0_0,Flood & Water Surface Increase
+transition_0_3,Flood & Water Surface Increase
+transition_3_0,Flood & Water Surface Increase
+transition_3_3,Flood & Water Surface Increase
+transition_7_0,Flood & Water Surface Increase
+transition_7_3,Flood & Water Surface Increase
+transition_8_0,Flood & Water Surface Increase
+transition_8_3,Flood & Water Surface Increase
+Num_News,Other Indicators
+Num_Reddit,Other Indicators
+transition_0_1,Other Indicators
+transition_0_2,Other Indicators
+transition_0_4,Other Indicators
+transition_0_5,Other Indicators
+transition_0_6,Other Indicators
+transition_0_7,Other Indicators
+transition_0_8,Other Indicators
+transition_3_1,Other Indicators
+transition_3_2,Other Indicators
+transition_3_4,Other Indicators
+transition_3_5,Other Indicators
+transition_3_6,Other Indicators
+transition_3_7,Other Indicators
+transition_3_8,Other Indicators
+transition_7_1,Other Indicators
+transition_7_2,Other Indicators
+transition_7_4,Other Indicators
+transition_7_5,Other Indicators
+transition_7_6,Other Indicators
+transition_7_7,Other Indicators
+transition_7_8,Other Indicators
+transition_8_1,Other Indicators
+transition_8_2,Other Indicators
+transition_8_4,Other Indicators
+transition_8_5,Other Indicators
+transition_8_6,Other Indicators
+transition_8_7,Other Indicators
+transition_8_8,Other Indicators
