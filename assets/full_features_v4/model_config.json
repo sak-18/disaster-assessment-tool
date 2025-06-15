@@ -1,5 +1,5 @@
 {
-    "model_name": "MLP_2Layer_Base",
+    "model_name": "RandomForest_Regularized",
     "train_idx": [
         0,
         1,
@@ -1101,5 +1101,11 @@
         1073,
         1092
     ],
-    "score": 0.5509792700243558
+    "metrics": {
+        "accuracy": 0.6727272727272727,
+        "f1_macro": 0.48903939444550026,
+        "f1_micro": 0.6727272727272727,
+        "precision_macro": 0.6593252108716027,
+        "recall_macro": 0.4962975005080268
+    }
 }

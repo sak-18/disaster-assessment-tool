@@ -1,0 +1,8 @@
+{
+    "Property_Damage_GT": {
+        "accuracy": 0.6136363636363636,
+        "f1_macro": 0.44403129395218005,
+        "precision_macro": 0.4878364703501316,
+        "recall_macro": 0.457213303529093
+    }
+}
