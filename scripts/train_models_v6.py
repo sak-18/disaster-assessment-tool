@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 DATA_PATH = "../data/data_features.csv"
 GROUPINGS_PATH = "../assets/groupings/feature_groupings.csv"
 DAG_PATH = "../assets/dags/dag_structures.json"
-OUTPUT_BASE = "../assets/full_features_v5"
+OUTPUT_BASE = "../assets/full_features_v6"
 TARGET_COL = "Property_Damage_GT"
 PRIMARY_METRIC = "accuracy"  # Options: accuracy, f1_macro, f1_micro, precision_macro, recall_macro
 
