@@ -12,7 +12,7 @@ from sklearn.preprocessing import LabelEncoder, RobustScaler
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from xgboost import XGBClassifier
 from scipy.stats import kstest
 import warnings
@@ -51,121 +51,171 @@ model_configs = {
 
 def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
     os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "models"), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, "eps"), exist_ok=True)
 
-    # Split data
-    X_train = X.iloc[train_idx].copy()
-    X_test = X.iloc[test_idx].copy()
-    y_train = y[train_idx]
-    y_test = y[test_idx]
-
-    # Keep a copy of the original test features for ground truth
+    X_train, X_test = X.iloc[train_idx].copy(), X.iloc[test_idx].copy()
+    y_train, y_test = y[train_idx], y[test_idx]
     original_X_test = X_test.copy()
 
-    # Determine node ordering
     node_order = topological_sort(parents_dict)
-
-    models = {}
+    # print(f"Node Order: {node_order}")
     all_metrics = {}
+    models = {}
 
     for node in node_order:
         parents = parents_dict.get(node, [])
         if not parents:
             continue
 
-        # Prepare targets
+        # Define targets
         if node == TARGET_COL:
-            y_train_node = y_train
-            y_test_node = y_test
+            y_tr, y_te = y_train, y_test
+            model = RandomForestClassifier(n_estimators=50, random_state=42)
         else:
-            y_train_node = X_train[node]
-            y_test_node = original_X_test[node]
+            y_tr, y_te = X_train[node], original_X_test[node]
+            model = RandomForestRegressor(n_estimators=50, random_state=42)
 
-        # Train model for this node
-        model = clone(RandomForestClassifier(n_estimators=50, random_state=42))
-        model.fit(X_train[parents], y_train_node)
+        # Train model
+        model.fit(X_train[parents], y_tr)
 
         # Predictions
-        preds_train = model.predict(X_train[parents])
-        preds_test = model.predict(X_test[parents])
+        preds_tr = model.predict(X_train[parents])
+        preds_te = model.predict(X_test[parents])
 
-        # Compute residuals (epsilons) and save
-        eps_train = y_train_node - preds_train
-        eps_test  = y_test_node  - preds_test
-        np.save(os.path.join(output_dir, f"eps_train_{node}.npy"), eps_train)
-        np.save(os.path.join(output_dir, f"eps_test_{node}.npy"),  eps_test)
+        # Residuals (epsilons)
+        np.save(os.path.join(output_dir, "eps", f"eps_train_{node}.npy"), y_tr - preds_tr)
+        np.save(os.path.join(output_dir, "eps", f"eps_test_{node}.npy"), y_te - preds_te)
 
-        # Evaluate metrics on test
-        metrics_node = {
-            "accuracy":         accuracy_score(y_test_node, preds_test),
-            "f1_macro":         f1_score(y_test_node, preds_test, average="macro"),
-            "precision_macro":  precision_score(y_test_node, preds_test, average="macro", zero_division=0),
-            "recall_macro":     recall_score(y_test_node, preds_test, average="macro", zero_division=0)
-        }
-        all_metrics[node] = metrics_node
+        # Evaluate metrics
+        if node == TARGET_COL:
+            train_metrics = {
+                "accuracy":        accuracy_score(y_tr, preds_tr),
+                "f1_macro":        f1_score(y_tr, preds_tr, average="macro"),
+                "precision_macro": precision_score(y_tr, preds_tr, average="macro", zero_division=0),
+                "recall_macro":    recall_score(y_tr, preds_tr, average="macro", zero_division=0)
+            }
+            test_metrics = {
+                "accuracy":        accuracy_score(y_te, preds_te),
+                "f1_macro":        f1_score(y_te, preds_te, average="macro"),
+                "precision_macro": precision_score(y_te, preds_te, average="macro", zero_division=0),
+                "recall_macro":    recall_score(y_te, preds_te, average="macro", zero_division=0)
+            }
+        else:
+            train_metrics = {"r2": round(model.score(X_train[parents], y_tr), 4)}
+            test_metrics = {"r2": round(model.score(X_test[parents], y_te), 4)}
 
-        # Print metrics in one line
-        print(
-            f"[SCM {node}] "
-            f"accuracy={metrics_node['accuracy']:.4f}, "
-            f"f1_macro={metrics_node['f1_macro']:.4f}, "
-            f"precision_macro={metrics_node['precision_macro']:.4f}, "
-            f"recall_macro={metrics_node['recall_macro']:.4f}"
-        )
-
-        # Save model for this node
-        joblib.dump(model, os.path.join(output_dir, f"{node}.joblib"))
-
-        # Update X_test for downstream nodes
-        X_test[node] = preds_test
-
-        # Store model
+        # Save model
+        model_path = os.path.join(output_dir, "models", f"{node}.joblib")
+        joblib.dump(model, model_path)
         models[node] = model
 
-    # Persist all node‐level SCM metrics
+        # Save config
+        config = {
+            "model_name":      node,
+            "type":            str(type(model)).split("'")[1],
+            "hyperparameters": model.get_params(),
+            "train_metrics":   train_metrics,
+            "test_metrics":    test_metrics,
+            "input_features":  parents,
+            "target_column":   node,
+            "preprocessing": {
+                "scaler":         "RobustScaler",
+                "normalization":  "transition_*/county_area_m2",
+                "fillna":         0
+            }
+        }
+        with open(os.path.join(output_dir, "models", f"{node}_model_config.json"), "w") as fp:
+            json.dump(config, fp, indent=4)
+
+        # Print summary for TARGET_COL only
+        if node == TARGET_COL:
+            print(
+                f"[SCM {node}] "
+                f"acc_tr={train_metrics['accuracy']:.4f}, "
+                f"f1_tr={train_metrics['f1_macro']:.4f}, "
+                f"precision_macro_tr={train_metrics['precision_macro']:.4f}, "
+                f"recall_macro_tr={train_metrics['recall_macro']:.4f}, "
+                f"acc_te={test_metrics['accuracy']:.4f}, "
+                f"f1_te={test_metrics['f1_macro']:.4f}, "
+                f"precision_macro_te={test_metrics['precision_macro']:.4f}, "
+                f"recall_macro_te={test_metrics['recall_macro']:.4f}"
+            )
+
+        # Update downstream
+        X_test[node] = preds_te
+        all_metrics[node] = {"train": train_metrics, "test": test_metrics}
+
     with open(os.path.join(output_dir, "scm_metrics.json"), "w") as f:
         json.dump(all_metrics, f, indent=4)
 
     return models, all_metrics
 
+
 # ------------------ HELPER FUNCTIONS ------------------ #
 
 def expand_group_dag_to_parents(dag_json, groupings, target_col):
+    from collections import defaultdict
+
+    # Step 1: group → features
     group_to_features = defaultdict(list)
+    feature_to_group = {}
     for _, row in groupings.iterrows():
-        group_to_features[row["Group"]].append(row["Feature"])
+        feat, group = row["Feature"], row["Group"]
+        group_to_features[group].append(feat)
+        feature_to_group[feat] = group
 
     dag_parents = defaultdict(list)
+
+    # Step 2: Expand all group DAG edges
     for src_group, tgt_groups in dag_json.items():
         src_feats = group_to_features.get(src_group, [])
         for tgt_group in tgt_groups:
             tgt_feats = group_to_features.get(tgt_group, [])
             for tgt_feat in tgt_feats:
                 dag_parents[tgt_feat].extend(src_feats)
-    dag_parents.setdefault(target_col, [])
-    for src_group, tgt_groups in dag_json.items():
-        if target_col in tgt_groups:
-            dag_parents[target_col].extend(group_to_features.get(src_group, []))
+
+            # Special case: target_col is referred to directly as a group
+            if tgt_group == target_col:
+                for tgt_feat in [target_col]:
+                    dag_parents[tgt_feat].extend(src_feats)
+
+    # Step 3: Deduplicate
     for node in dag_parents:
         dag_parents[node] = list(set(dag_parents[node]))
+
+    # Make sure target_col is initialized
+    dag_parents.setdefault(target_col, [])
+
     return dag_parents
 
 
 def topological_sort(parents_dict):
+    # Step 1: Collect all unique nodes
     all_nodes = set(parents_dict.keys()) | {p for ps in parents_dict.values() for p in ps}
+
+    # Step 2: Build in-degree map (how many edges point *to* each node)
     in_deg = {node: 0 for node in all_nodes}
-    for children in parents_dict.values():
-        for child in children:
+    for child, parents in parents_dict.items():
+        for parent in parents:
             in_deg[child] += 1
-    queue = [node for node, deg in in_deg.items() if deg == 0]
+
+    # Step 3: Start with nodes that have in-degree 0 (i.e., no parents)
+    queue = [node for node in all_nodes if in_deg[node] == 0]
     sorted_nodes = []
+
     while queue:
         node = queue.pop(0)
         sorted_nodes.append(node)
-        for child, parents in parents_dict.items():
+
+        # Reduce in-degree of children that depend on this node
+        for potential_child, parents in parents_dict.items():
             if node in parents:
-                in_deg[child] -= 1
-                if in_deg[child] == 0:
-                    queue.append(child)
+                in_deg[potential_child] -= 1
+                if in_deg[potential_child] == 0:
+                    queue.append(potential_child)
+
+    # Optional: filter to only keep relevant (observed) nodes
     return [n for n in sorted_nodes if n in parents_dict or n == TARGET_COL]
 
 # ------------------ PREDICTIVE MODEL TRAINING ------------------ #
@@ -231,8 +281,8 @@ if __name__ == "__main__":
         parents_dict = expand_group_dag_to_parents(
             dag_structs[dag_key], groupings, TARGET_COL
         )
-        print(f"[INFO] Parents of {TARGET_COL} from {dag_key}:", 
-            parents_dict.get(TARGET_COL, []))
+        # print(f"[INFO] Parents of {TARGET_COL} from {dag_key}:", 
+            # parents_dict.get(TARGET_COL, []))
         train_scm(
             X, y, parents_dict,
             train_idx, test_idx,

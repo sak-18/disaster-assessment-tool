@@ -1,8 +1,488 @@
 {
+    "transition_1_0": {
+        "train": {
+            "r2": 0.8998
+        },
+        "test": {
+            "r2": 0.2202
+        }
+    },
+    "transition_1_1": {
+        "train": {
+            "r2": 0.9336
+        },
+        "test": {
+            "r2": 0.5227
+        }
+    },
+    "transition_1_2": {
+        "train": {
+            "r2": 0.8596
+        },
+        "test": {
+            "r2": 0.1127
+        }
+    },
+    "transition_1_3": {
+        "train": {
+            "r2": 0.9205
+        },
+        "test": {
+            "r2": 0.5876
+        }
+    },
+    "transition_1_4": {
+        "train": {
+            "r2": 0.8656
+        },
+        "test": {
+            "r2": 0.1279
+        }
+    },
+    "transition_1_5": {
+        "train": {
+            "r2": 0.8534
+        },
+        "test": {
+            "r2": -0.0665
+        }
+    },
+    "transition_1_6": {
+        "train": {
+            "r2": 0.8624
+        },
+        "test": {
+            "r2": 0.0281
+        }
+    },
+    "transition_1_7": {
+        "train": {
+            "r2": 0.8359
+        },
+        "test": {
+            "r2": -1.5397
+        }
+    },
+    "transition_1_8": {
+        "train": {
+            "r2": 0.806
+        },
+        "test": {
+            "r2": -0.1458
+        }
+    },
+    "transition_2_0": {
+        "train": {
+            "r2": 0.8526
+        },
+        "test": {
+            "r2": 0.2466
+        }
+    },
+    "transition_2_1": {
+        "train": {
+            "r2": 0.9054
+        },
+        "test": {
+            "r2": 0.2729
+        }
+    },
+    "transition_2_2": {
+        "train": {
+            "r2": 0.8906
+        },
+        "test": {
+            "r2": 0.1736
+        }
+    },
+    "transition_2_3": {
+        "train": {
+            "r2": 0.9367
+        },
+        "test": {
+            "r2": 0.6084
+        }
+    },
+    "transition_2_4": {
+        "train": {
+            "r2": 0.8784
+        },
+        "test": {
+            "r2": 0.0717
+        }
+    },
+    "transition_2_5": {
+        "train": {
+            "r2": 0.8909
+        },
+        "test": {
+            "r2": 0.3004
+        }
+    },
+    "transition_2_6": {
+        "train": {
+            "r2": 0.8433
+        },
+        "test": {
+            "r2": -0.1272
+        }
+    },
+    "transition_2_7": {
+        "train": {
+            "r2": 0.8645
+        },
+        "test": {
+            "r2": 0.0046
+        }
+    },
+    "transition_2_8": {
+        "train": {
+            "r2": 0.7974
+        },
+        "test": {
+            "r2": -0.042
+        }
+    },
+    "transition_5_0": {
+        "train": {
+            "r2": 0.9137
+        },
+        "test": {
+            "r2": 0.0066
+        }
+    },
+    "transition_5_1": {
+        "train": {
+            "r2": 0.8311
+        },
+        "test": {
+            "r2": 0.1234
+        }
+    },
+    "transition_5_2": {
+        "train": {
+            "r2": 0.8658
+        },
+        "test": {
+            "r2": 0.1687
+        }
+    },
+    "transition_5_3": {
+        "train": {
+            "r2": 0.9328
+        },
+        "test": {
+            "r2": 0.653
+        }
+    },
+    "transition_5_4": {
+        "train": {
+            "r2": 0.8523
+        },
+        "test": {
+            "r2": 0.0464
+        }
+    },
+    "transition_5_5": {
+        "train": {
+            "r2": 0.8621
+        },
+        "test": {
+            "r2": 0.0036
+        }
+    },
+    "transition_5_6": {
+        "train": {
+            "r2": 0.8901
+        },
+        "test": {
+            "r2": -0.2894
+        }
+    },
+    "transition_5_7": {
+        "train": {
+            "r2": 0.8394
+        },
+        "test": {
+            "r2": -1.6215
+        }
+    },
+    "transition_5_8": {
+        "train": {
+            "r2": 0.7778
+        },
+        "test": {
+            "r2": -0.0764
+        }
+    },
+    "News_Trees": {
+        "train": {
+            "r2": 0.6847
+        },
+        "test": {
+            "r2": -0.111
+        }
+    },
+    "Reddit_Trees": {
+        "train": {
+            "r2": 0.8311
+        },
+        "test": {
+            "r2": -0.0191
+        }
+    },
+    "transition_6_0": {
+        "train": {
+            "r2": 0.8482
+        },
+        "test": {
+            "r2": -1.4821
+        }
+    },
+    "transition_6_1": {
+        "train": {
+            "r2": 0.8889
+        },
+        "test": {
+            "r2": 0.0241
+        }
+    },
+    "transition_6_2": {
+        "train": {
+            "r2": 0.8705
+        },
+        "test": {
+            "r2": 0.2081
+        }
+    },
+    "transition_6_3": {
+        "train": {
+            "r2": 0.8993
+        },
+        "test": {
+            "r2": 0.6817
+        }
+    },
+    "transition_6_4": {
+        "train": {
+            "r2": 0.8571
+        },
+        "test": {
+            "r2": 0.0378
+        }
+    },
+    "transition_6_5": {
+        "train": {
+            "r2": 0.8762
+        },
+        "test": {
+            "r2": 0.0367
+        }
+    },
+    "transition_6_6": {
+        "train": {
+            "r2": 0.8876
+        },
+        "test": {
+            "r2": -0.022
+        }
+    },
+    "transition_6_7": {
+        "train": {
+            "r2": 0.8548
+        },
+        "test": {
+            "r2": -0.2491
+        }
+    },
+    "transition_6_8": {
+        "train": {
+            "r2": 0.8033
+        },
+        "test": {
+            "r2": -0.0709
+        }
+    },
+    "News_Buildings": {
+        "train": {
+            "r2": 0.6717
+        },
+        "test": {
+            "r2": -0.0718
+        }
+    },
+    "Reddit_Buildings": {
+        "train": {
+            "r2": 0.7415
+        },
+        "test": {
+            "r2": -0.1395
+        }
+    },
+    "News_Roofs": {
+        "train": {
+            "r2": 0.6681
+        },
+        "test": {
+            "r2": -0.0736
+        }
+    },
+    "Reddit_Roofs": {
+        "train": {
+            "r2": 0.7263
+        },
+        "test": {
+            "r2": -0.0405
+        }
+    },
+    "News_Power Lines": {
+        "train": {
+            "r2": 0.7212
+        },
+        "test": {
+            "r2": -0.5604
+        }
+    },
+    "Reddit_Power Lines": {
+        "train": {
+            "r2": 0.8394
+        },
+        "test": {
+            "r2": -0.066
+        }
+    },
+    "News_Infrastructure": {
+        "train": {
+            "r2": 0.4989
+        },
+        "test": {
+            "r2": -0.9968
+        }
+    },
+    "Reddit_Infrastructure": {
+        "train": {
+            "r2": 0.7044
+        },
+        "test": {
+            "r2": -0.6396
+        }
+    },
+    "transition_4_0": {
+        "train": {
+            "r2": 0.9147
+        },
+        "test": {
+            "r2": -3.3979
+        }
+    },
+    "transition_4_1": {
+        "train": {
+            "r2": 0.8893
+        },
+        "test": {
+            "r2": 0.1056
+        }
+    },
+    "transition_4_2": {
+        "train": {
+            "r2": 0.8688
+        },
+        "test": {
+            "r2": -0.2519
+        }
+    },
+    "transition_4_3": {
+        "train": {
+            "r2": 0.9156
+        },
+        "test": {
+            "r2": -3.5329
+        }
+    },
+    "transition_4_4": {
+        "train": {
+            "r2": 0.8879
+        },
+        "test": {
+            "r2": 0.026
+        }
+    },
+    "transition_4_5": {
+        "train": {
+            "r2": 0.8373
+        },
+        "test": {
+            "r2": -0.6174
+        }
+    },
+    "transition_4_6": {
+        "train": {
+            "r2": 0.8939
+        },
+        "test": {
+            "r2": 0.1002
+        }
+    },
+    "transition_4_7": {
+        "train": {
+            "r2": 0.8596
+        },
+        "test": {
+            "r2": -0.1225
+        }
+    },
+    "transition_4_8": {
+        "train": {
+            "r2": 0.7793
+        },
+        "test": {
+            "r2": -1.0228
+        }
+    },
+    "News_Agriculture": {
+        "train": {
+            "r2": 0.5722
+        },
+        "test": {
+            "r2": -0.1239
+        }
+    },
+    "Reddit_Agriculture": {
+        "train": {
+            "r2": 0.7408
+        },
+        "test": {
+            "r2": -0.1097
+        }
+    },
+    "News_Vehicles": {
+        "train": {
+            "r2": 0.6384
+        },
+        "test": {
+            "r2": -0.0815
+        }
+    },
+    "Reddit_Vehicles": {
+        "train": {
+            "r2": 0.7222
+        },
+        "test": {
+            "r2": -0.0488
+        }
+    },
     "Property_Damage_GT": {
-        "accuracy": 0.6090909090909091,
-        "f1_macro": 0.45425315425315427,
-        "precision_macro": 0.4969058874086807,
-        "recall_macro": 0.4588674388674388
+        "train": {
+            "accuracy": 0.9315849486887116,
+            "f1_macro": 0.9226838703354284,
+            "precision_macro": 0.9625783033780223,
+            "recall_macro": 0.8973519025783835
+        },
+        "test": {
+            "accuracy": 0.6136363636363636,
+            "f1_macro": 0.3422151544600524,
+            "precision_macro": 0.6047619047619047,
+            "recall_macro": 0.37501998238840345
+        }
     }
 }
