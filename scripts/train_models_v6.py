@@ -31,20 +31,20 @@ PRIMARY_METRIC = "accuracy"  # Options: accuracy, f1_macro, f1_micro, precision_
 
 # ------------------ MODEL CONFIGS ------------------ #
 model_configs = {
-    "XGBoost_Base": XGBClassifier(eval_metric="mlogloss", n_estimators=50,
-                                  max_depth=6, learning_rate=0.1, subsample=0.8,
-                                  colsample_bytree=0.8, reg_lambda=0.0, reg_alpha=0.0, random_state=42),
-    "XGBoost_Regularized": XGBClassifier(eval_metric="mlogloss", n_estimators=50,
-                                         max_depth=6, learning_rate=0.1, subsample=0.8,
-                                         colsample_bytree=0.8, reg_lambda=1.0, reg_alpha=0.5, random_state=42),
-    "RandomForest_Base": RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=2, random_state=42),
-    "RandomForest_Regularized": RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=5, random_state=42),
-    "MLP_2Layer_Base": MLPClassifier(hidden_layer_sizes=(128, 64), alpha=0.0001, max_iter=3000, random_state=42),
-    "MLP_2Layer_Regularized": MLPClassifier(hidden_layer_sizes=(128, 64), alpha=0.01, max_iter=3000, random_state=42),
-    "MLP_5Layer_Base": MLPClassifier(hidden_layer_sizes=(256, 128, 64, 32, 16), alpha=0.0001, max_iter=3000, random_state=42),
-    "MLP_5Layer_Regularized": MLPClassifier(hidden_layer_sizes=(256, 128, 64, 32, 16), alpha=0.01, max_iter=3000, random_state=42),
-    "LogisticRegression_Base": LogisticRegression(penalty=None, solver="saga", max_iter=3000, random_state=42),
-    "LogisticRegression_L1": LogisticRegression(penalty="l1", solver="saga", C=1.0, max_iter=3000, random_state=42)
+    # "XGBoost_Base": XGBClassifier(eval_metric="mlogloss", n_estimators=50,
+    #                               max_depth=6, learning_rate=0.1, subsample=0.8,
+    #                               colsample_bytree=0.8, reg_lambda=0.0, reg_alpha=0.0, random_state=42),
+    # "XGBoost_Regularized": XGBClassifier(eval_metric="mlogloss", n_estimators=50,
+    #                                      max_depth=6, learning_rate=0.1, subsample=0.8,
+    #                                      colsample_bytree=0.8, reg_lambda=1.0, reg_alpha=0.5, random_state=42),
+    # "RandomForest_Base": RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=2, random_state=42),
+    "RandomForest_Regularized": RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=5, random_state=42)
+    # "MLP_2Layer_Base": MLPClassifier(hidden_layer_sizes=(128, 64), alpha=0.0001, max_iter=3000, random_state=42),
+    # "MLP_2Layer_Regularized": MLPClassifier(hidden_layer_sizes=(128, 64), alpha=0.01, max_iter=3000, random_state=42),
+    # "MLP_5Layer_Base": MLPClassifier(hidden_layer_sizes=(256, 128, 64, 32, 16), alpha=0.0001, max_iter=3000, random_state=42),
+    # "MLP_5Layer_Regularized": MLPClassifier(hidden_layer_sizes=(256, 128, 64, 32, 16), alpha=0.01, max_iter=3000, random_state=42),
+    # "LogisticRegression_Base": LogisticRegression(penalty=None, solver="saga", max_iter=3000, random_state=42),
+    # "LogisticRegression_L1": LogisticRegression(penalty="l1", solver="saga", C=1.0, max_iter=3000, random_state=42)
 }
 
 # ------------------ PHASE 1: Training the SCM ------------------ #
@@ -58,8 +58,14 @@ def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
     y_train, y_test = y[train_idx], y[test_idx]
     original_X_test = X_test.copy()
 
+    # Apply RobustScaler across all input features
+    input_features = list(X.columns)
+    scaler = RobustScaler()
+    X_train[input_features] = scaler.fit_transform(X_train[input_features])
+    X_test[input_features] = scaler.transform(X_test[input_features])
+    joblib.dump(scaler, os.path.join(output_dir, "models", "scaler.joblib"))
+
     node_order = topological_sort(parents_dict)
-    # print(f"Node Order: {node_order}")
     all_metrics = {}
     models = {}
 
@@ -68,26 +74,20 @@ def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
         if not parents:
             continue
 
-        # Define targets
         if node == TARGET_COL:
             y_tr, y_te = y_train, y_test
-            model = RandomForestClassifier(n_estimators=50, random_state=42)
+            model = RandomForestClassifier(n_estimators=100, max_depth=10, min_samples_split=5, random_state=42)
         else:
             y_tr, y_te = X_train[node], original_X_test[node]
-            model = RandomForestRegressor(n_estimators=50, random_state=42)
+            model = RandomForestRegressor(n_estimators=100, max_depth=10, min_samples_split=5, random_state=42)
 
-        # Train model
         model.fit(X_train[parents], y_tr)
-
-        # Predictions
         preds_tr = model.predict(X_train[parents])
         preds_te = model.predict(X_test[parents])
 
-        # Residuals (epsilons)
         np.save(os.path.join(output_dir, "eps", f"eps_train_{node}.npy"), y_tr - preds_tr)
         np.save(os.path.join(output_dir, "eps", f"eps_test_{node}.npy"), y_te - preds_te)
 
-        # Evaluate metrics
         if node == TARGET_COL:
             train_metrics = {
                 "accuracy":        accuracy_score(y_tr, preds_tr),
@@ -105,12 +105,9 @@ def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
             train_metrics = {"r2": round(model.score(X_train[parents], y_tr), 4)}
             test_metrics = {"r2": round(model.score(X_test[parents], y_te), 4)}
 
-        # Save model
-        model_path = os.path.join(output_dir, "models", f"{node}.joblib")
-        joblib.dump(model, model_path)
+        joblib.dump(model, os.path.join(output_dir, "models", f"{node}.joblib"))
         models[node] = model
 
-        # Save config
         config = {
             "model_name":      node,
             "type":            str(type(model)).split("'")[1],
@@ -128,7 +125,6 @@ def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
         with open(os.path.join(output_dir, "models", f"{node}_model_config.json"), "w") as fp:
             json.dump(config, fp, indent=4)
 
-        # Print summary for TARGET_COL only
         if node == TARGET_COL:
             print(
                 f"[SCM {node}] "
@@ -142,7 +138,6 @@ def train_scm(X, y, parents_dict, train_idx, test_idx, output_dir):
                 f"recall_macro_te={test_metrics['recall_macro']:.4f}"
             )
 
-        # Update downstream
         X_test[node] = preds_te
         all_metrics[node] = {"train": train_metrics, "test": test_metrics}
 
