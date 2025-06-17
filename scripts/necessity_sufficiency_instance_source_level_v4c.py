@@ -3,13 +3,13 @@ import numpy as np
 import pandas as pd
 import joblib
 import json
-import torch
 from tqdm import tqdm
 
 # ------------------ Config ------------------
-feature_set = "full_features"  # or "filtered_features"
+feature_set = "full_features"
 assets_dir = f"../assets/{feature_set}"
 data_path = "../data/data_features.csv"
+groupings_path = "../assets/groupings/feature_groupings.csv"
 out_dir = f"../importance_scores_v4c"
 os.makedirs(out_dir, exist_ok=True)
 
@@ -39,16 +39,19 @@ meta_test = df.iloc[test_idx].reset_index().rename(columns={"index": "Instance_I
 meta_cols = ["Instance_Index", "FIPS", "County_Name", "State", "SHELDUS_Event"]
 meta_df = meta_test[["Instance_Index"] + [col for col in meta_test.columns if col in meta_cols]]
 
+# ------------------ Load Group Definitions ------------------
+groupings_df = pd.read_csv(groupings_path)
+group_to_feats = groupings_df.groupby("Group")["Feature"].apply(list).to_dict()
+
 # ------------------ Perturbation Setup ------------------
 nCF = 100
-scale_map = {feat: scaler.scale_[i] for i, feat in enumerate(input_cols)}
 
 def perturb_feature(x, idx, std=1.0):
     x_perturb = x.copy()
     x_perturb[0, idx] += np.random.normal(0, std)
     return np.clip(x_perturb, -5, 5)
 
-# ------------------ Define Feature Groups ------------------
+# ------------------ Source Groups ------------------
 source_groups = {
     "Transition": [feat for feat in input_cols if feat.startswith("transition_")],
     "Reddit":     [feat for feat in input_cols if feat.startswith("Reddit_")],
@@ -60,6 +63,8 @@ nec_scores_all = []
 suff_scores_all = []
 source_nec_scores_all = []
 source_suff_scores_all = []
+group_nec_scores_all = []
+group_suff_scores_all = []
 
 for i, x in enumerate(tqdm(X_test, desc="Evaluating instances")):
     query = x.reshape(1, -1)
@@ -69,6 +74,8 @@ for i, x in enumerate(tqdm(X_test, desc="Evaluating instances")):
     suff_scores = {}
     source_nec = {}
     source_suff = {}
+    group_nec = {}
+    group_suff = {}
 
     for feat in input_cols:
         idx = input_cols.index(feat)
@@ -94,27 +101,42 @@ for i, x in enumerate(tqdm(X_test, desc="Evaluating instances")):
         suff_score = (base_success - fixed_success) / nCF
         suff_scores[f"sufficiency_{feat}"] = max(0, suff_score)
 
+    # Source-level aggregation
     for src, feats in source_groups.items():
-        source_nec[f"necessity_{src}"] = np.mean([nec_scores[f"necessity_{f}"] for f in feats])
-        source_suff[f"sufficiency_{src}"] = np.mean([suff_scores[f"sufficiency_{f}"] for f in feats])
+        source_nec[f"necessity_{src}"] = np.mean([nec_scores.get(f"necessity_" + f, 0.0) for f in feats])
+        source_suff[f"sufficiency_{src}"] = np.mean([suff_scores.get(f"sufficiency_" + f, 0.0) for f in feats])
+
+    # Group-level aggregation
+    for grp, feats in group_to_feats.items():
+        valid_feats = [f for f in feats if f in input_cols]
+        group_nec[f"necessity_{grp}"] = np.mean([nec_scores.get(f"necessity_" + f, 0.0) for f in valid_feats])
+        group_suff[f"sufficiency_{grp}"] = np.mean([suff_scores.get(f"sufficiency_" + f, 0.0) for f in valid_feats])
 
     nec_scores_all.append(nec_scores)
     suff_scores_all.append(suff_scores)
     source_nec_scores_all.append(source_nec)
     source_suff_scores_all.append(source_suff)
+    group_nec_scores_all.append(group_nec)
+    group_suff_scores_all.append(group_suff)
 
 # ------------------ Save ------------------
 df_nec = pd.concat([meta_df, pd.DataFrame(nec_scores_all)], axis=1)
 df_suff = pd.concat([meta_df, pd.DataFrame(suff_scores_all)], axis=1)
 df_source_nec = pd.concat([meta_df, pd.DataFrame(source_nec_scores_all)], axis=1)
 df_source_suff = pd.concat([meta_df, pd.DataFrame(source_suff_scores_all)], axis=1)
+df_group_nec = pd.concat([meta_df, pd.DataFrame(group_nec_scores_all)], axis=1)
+df_group_suff = pd.concat([meta_df, pd.DataFrame(group_suff_scores_all)], axis=1)
 
 df_nec.to_csv(os.path.join(out_dir, "instance_necessity_scores.csv"), index=False)
 df_suff.to_csv(os.path.join(out_dir, "instance_sufficiency_scores.csv"), index=False)
 df_source_nec.to_csv(os.path.join(out_dir, "source_necessity_scores.csv"), index=False)
 df_source_suff.to_csv(os.path.join(out_dir, "source_sufficiency_scores.csv"), index=False)
+df_group_nec.to_csv(os.path.join(out_dir, "group_necessity_scores.csv"), index=False)
+df_group_suff.to_csv(os.path.join(out_dir, "group_sufficiency_scores.csv"), index=False)
 
 print(f"\n✓ Saved to:\n- {out_dir}/instance_necessity_scores.csv"
       f"\n- {out_dir}/instance_sufficiency_scores.csv"
       f"\n- {out_dir}/source_necessity_scores.csv"
-      f"\n- {out_dir}/source_sufficiency_scores.csv")
+      f"\n- {out_dir}/source_sufficiency_scores.csv"
+      f"\n- {out_dir}/group_necessity_scores.csv"
+      f"\n- {out_dir}/group_sufficiency_scores.csv")

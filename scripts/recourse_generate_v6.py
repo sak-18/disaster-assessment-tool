@@ -233,25 +233,53 @@ def plot_lollipop(
 # Self‑test
 # ---------------------------------------------------------------
 if __name__ == "__main__":
-    print(
-        f"Self‑test: instance {INSTANCE_IDX} → class 0 (3–10 changes, adaptive search)…"
-    )
-    try:
-        cf, deltas = generate_recourse(
-            INSTANCE_IDX,
-            desired_class=0,
-            min_changes=3,
-            max_changes=10,
-        )
-        print("Changes", len(deltas), "features; distance =", cf["dist"])
-        print(deltas.head())
-        out_png = f"../lollipop_{INSTANCE_IDX}.png"
-        plot_lollipop(
-            deltas,
-            title=f"Recourse for instance {INSTANCE_IDX}",
-            savepath=out_png,
-            show=False,
-        )
-        print(f"✓ Lollipop chart saved to '{out_png}'.")
-    except Exception as e:
-        print("⚠️", e)
+    print("Batch generation of recourses for all test instances...")
+
+    os.makedirs("../lollipop_charts", exist_ok=True)  # <-- ensures folder exists
+    
+    model, scaler, cfg = _load_assets()
+    df = pd.read_csv(DATA_PATH, dtype={"FIPS": str})
+    X_cols = cfg["input_features"]
+    target_col = cfg["target_column"]
+    
+    idx_file = os.path.join(ASSETS_DIR, "final_test_indices.txt")
+    test_indices = _load_indices(idx_file)
+    
+    output_data = []
+    
+    for idx in test_indices:
+        try:
+            cf_row, deltas = generate_recourse(
+                instance_idx=idx,
+                desired_class=0,  # or 1/2 depending on your task
+                min_changes=3,
+                max_changes=10,
+                instance_is_test=True
+            )
+            original_row = df.loc[idx, X_cols]
+            original_pred = model.predict([scaler.transform([original_row])[0]])[0]
+            cf_pred = model.predict([scaler.transform([cf_row[X_cols].values])[0]])[0]
+            
+            output_data.append({
+                "instance_idx": int(idx),
+                "original_prediction": int(original_pred),
+                "counterfactual_prediction": int(cf_pred),
+                "changed_features": deltas.to_dict(orient="records")
+            })
+            
+            # Save lollipop plot
+            plot_lollipop(
+                deltas,
+                title=f"Recourse for instance {idx}",
+                savepath=f"../lollipop_charts/lollipop_{idx}.png",
+                show=False
+            )
+        
+        except Exception as e:
+            print(f"⚠️ Failed on instance {idx}: {e}")
+
+    # Save output as JSON
+    with open("../recourse_results.json", "w") as f:
+        json.dump(output_data, f, indent=2)
+    
+    print("✓ All recourses generated and saved.")

@@ -1,0 +1,3632 @@
+[
+  {
+    "instance_idx": 2,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_0_2",
+        "original": 6378.148796081543,
+        "cf": 3998750.6
+      },
+      {
+        "feature": "transition_2_5",
+        "original": 21531888.32635695,
+        "cf": 50141834.2
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 3203097.7438120823,
+        "cf": 236937810.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 3,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 49.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 428530.22693634033,
+        "cf": 296275015.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 25,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 18.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 42369372.82332365,
+        "cf": 224125731.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 26,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 1369762.76272583,
+        "cf": 404861660.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 630584.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 27,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 3595635.7306084726,
+        "cf": 249838108.5
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 8290353.433814225,
+        "cf": 580378985.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 33,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 26.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 6022556.236587854,
+        "cf": 1112244136.5
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 7944204.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 42,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 13.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 5720851.22125328,
+        "cf": 983943693.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 56,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 4973384.691299498,
+        "cf": 12452615.1
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 25096190.184351098,
+        "cf": 1941710623.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 57,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 3229837.3209877457,
+        "cf": 255127509.1
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 352839.37992763147,
+        "cf": 95397037.6
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 813952.8429082832,
+        "cf": 4104037.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 59,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 1,
+        "cf": 20.0
+      },
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 10.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 79,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 1,
+        "cf": 31.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 13.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 10873466.479234643,
+        "cf": 1868999373.4
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 2311224.499242805,
+        "cf": 9233958.6
+      },
+      {
+        "feature": "transition_2_7",
+        "original": 390575.291053772,
+        "cf": 5828245.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 87,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 59.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 725226.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 92,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 3907260.722422641,
+        "cf": 140794901.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 101,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_1_0",
+        "original": 26021441.233355947,
+        "cf": 10885903.5
+      },
+      {
+        "feature": "transition_1_5",
+        "original": 85411169.1304548,
+        "cf": 12012740.3
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 57149017.97170701,
+        "cf": 1481261018.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 103,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 2971250.176247959,
+        "cf": 367654684.9
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 32867578.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 104,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 31.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 53.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 442303.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 106,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 10.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 39.0
+      },
+      {
+        "feature": "transition_2_5",
+        "original": 512415.709901877,
+        "cf": 46603182.1
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 10287720.339860564,
+        "cf": 375990040.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 113,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 17.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 4.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 122,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 1,
+        "cf": 52.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 60070833.55349741,
+        "cf": 378994958.9
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 29395517.469159026,
+        "cf": 125404681.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 141,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 10830122.7499787,
+        "cf": 946947231.7
+      },
+      {
+        "feature": "transition_6_4",
+        "original": 3414515.798521124,
+        "cf": 16190944.8
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 1934012.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 164,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 17833895.77658548,
+        "cf": 387257951.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 175,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 19.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 55323881.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 179,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 36.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 1223533.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 184,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 3018145.6713289446,
+        "cf": 599619229.7
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 3341187.181405161,
+        "cf": 1480771576.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 185,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 15,
+        "cf": 35.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 34135641.93886846,
+        "cf": 440697770.3
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 6977.171859741211,
+        "cf": 76157937.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 192,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_0_0",
+        "original": 12825709.886684077,
+        "cf": 3507627429.9
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 307931992.191914,
+        "cf": 295354396.6
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 101936.9081878662,
+        "cf": 26677738.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 200,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 25.0
+      },
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 6.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 207,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_1_0",
+        "original": 526344.330012931,
+        "cf": 2610388.1
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 1789716229.169764,
+        "cf": 923884389.9
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 5347310.485565186,
+        "cf": 80997735.4
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 19438125.30546782,
+        "cf": 1046796780.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 215,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 6.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 228,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 15.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1537802.4439676623,
+        "cf": 262510574.6
+      },
+      {
+        "feature": "transition_5_2",
+        "original": 436273.0767669678,
+        "cf": 86803629.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 229,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 1,
+        "cf": 25.0
+      },
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 6752746.180154359,
+        "cf": 538729948.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 230,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 25934098.93448821,
+        "cf": 1235002922.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 233,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 1500450.9222175148,
+        "cf": 435135173.8
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 14693514.208885193,
+        "cf": 476351968.1
+      },
+      {
+        "feature": "transition_3_2",
+        "original": 0.0,
+        "cf": 4028047.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 241,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 166549.04496765137,
+        "cf": 10690431.9
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 863537.2076188929,
+        "cf": 154496214.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 245,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 1.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 255,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 19.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 9134699.7966454,
+        "cf": 1079183577.4
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 254443.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 256,
+    "original_prediction": 1,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "transition_0_1",
+        "original": 194856.52810938217,
+        "cf": 20146407.6
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1182985.5765942442,
+        "cf": 453262162.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 261,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 641278399.8168246,
+        "cf": 67519030.7
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 6219683.573968895,
+        "cf": 16017432.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 273,
+    "original_prediction": 0,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 24.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 17837343.845107406,
+        "cf": 1536577230.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 19777256.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 289,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 16.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 1,
+        "cf": 10.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 66785955.97168857,
+        "cf": 579509507.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 290,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 47641922.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 296,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 17.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 297,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 3,
+        "cf": 18.0
+      },
+      {
+        "feature": "News_Infrastructure",
+        "original": 3,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 5854532.242806468,
+        "cf": 577694815.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 339,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 61925293.77960987,
+        "cf": 583444048.2
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 349634.7590866089,
+        "cf": 18859820.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 341,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 220621.77134261787,
+        "cf": 262490211.8
+      },
+      {
+        "feature": "transition_2_5",
+        "original": 418010.206080448,
+        "cf": 14850019.5
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 79694425.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 343,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 23.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 67413607.22383837,
+        "cf": 270101055.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 345,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 1,
+        "cf": 3.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 507574.294342041,
+        "cf": 399748532.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 346,
+    "original_prediction": 1,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_1_5",
+        "original": 1207867.6388956704,
+        "cf": 212697617.4
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 35166909.227519795,
+        "cf": 543807417.7
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 26246087.65757353,
+        "cf": 96672921.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 349,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 39.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 2011851.5564422607,
+        "cf": 1163441170.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 726063.2571239397,
+        "cf": 24620059.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 351,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 3689945.491431921,
+        "cf": 1808816035.6
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 1158252.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 354,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 3,
+        "cf": 1.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 12.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 357,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 58.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 14842267.00356876,
+        "cf": 2463163735.6
+      },
+      {
+        "feature": "transition_1_0",
+        "original": 29916.00663278617,
+        "cf": 163968.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 361,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 1530811.9526290894,
+        "cf": 320663381.4
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 111963.80484284046,
+        "cf": 5044771.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 376,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 5623719.279075861,
+        "cf": 432990716.0
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 9255161.7947131,
+        "cf": 8592599.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 377,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 32.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 15.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 55996446.75918424,
+        "cf": 796230716.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 386,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 16312659.256625516,
+        "cf": 194795737.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 392,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 17.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 27864026.77742854,
+        "cf": 442543613.5
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 25943396.110862523,
+        "cf": 553556310.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 396,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 35.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 49660079.9321796,
+        "cf": 5223338703.5
+      },
+      {
+        "feature": "transition_1_3",
+        "original": 1481991.7408925672,
+        "cf": 14588083.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 417,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 10.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 694176.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 427,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 13.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1478222.8244307877,
+        "cf": 167286443.4
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 1350756.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 432,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 1,
+        "cf": 3.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 5.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 433,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 1,
+        "cf": 13.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 1,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 6855245.766156574,
+        "cf": 465058075.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 439,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 29.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 5308695.880903895,
+        "cf": 259461612.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 448,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 11013231.016506122,
+        "cf": 1140719532.0
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 22061189.041878525,
+        "cf": 38195336.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 453,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 1454387.9130871636,
+        "cf": 317622112.8
+      },
+      {
+        "feature": "transition_5_4",
+        "original": 18481.462684631348,
+        "cf": 30509661.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 467,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 53455405.20890298,
+        "cf": 431994941.2
+      },
+      {
+        "feature": "transition_2_7",
+        "original": 2335211.6567830406,
+        "cf": 17069529.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 483,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 2,
+        "cf": 0.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 35122.903747558594,
+        "cf": 181477755.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 490,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 116703.5051574707,
+        "cf": 438538860.2
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 9622.975784301758,
+        "cf": 30747441.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 497,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 5744142.812782288,
+        "cf": 575601920.3
+      },
+      {
+        "feature": "transition_4_6",
+        "original": 463693.4458579867,
+        "cf": 1150401.9
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 11267479.204094293,
+        "cf": 150886881.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 499,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_2_0",
+        "original": 80830.25220489502,
+        "cf": 731782.7
+      },
+      {
+        "feature": "transition_2_5",
+        "original": 7677635.554286852,
+        "cf": 61166611.1
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 2880041.545044573,
+        "cf": 837017409.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 503,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1444142.946923529,
+        "cf": 436849026.1
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 1683888.9344840855,
+        "cf": 9818959.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 515,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 41912767.9827479,
+        "cf": 5051394036.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 519,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 32.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 1710594.1176834106,
+        "cf": 32107611.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 520,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 2551109.258073964,
+        "cf": 2112221335.9
+      },
+      {
+        "feature": "transition_3_7",
+        "original": 456.8935394287109,
+        "cf": 61302.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 533,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 19.0
+      },
+      {
+        "feature": "transition_1_7",
+        "original": 6672.696990966797,
+        "cf": 4402577.1
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 314233.56715393066,
+        "cf": 472646918.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 541,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 4702184.545783997,
+        "cf": 47607965.4
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 56741890.297325134,
+        "cf": 1502604109.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 544,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 610255.3306607414,
+        "cf": 353156705.3
+      },
+      {
+        "feature": "transition_6_2",
+        "original": 639387.8892465329,
+        "cf": 10738584.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 548,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_0_6",
+        "original": 13567.65993499756,
+        "cf": 1862088.3
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 2196360.065382026,
+        "cf": 433907296.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 569,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 4440671.351849216,
+        "cf": 374248916.6
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 1227837.5307235718,
+        "cf": 384104456.5
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 25781034.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 584,
+    "original_prediction": 1,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 505792263.92699087,
+        "cf": 425194394.2
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 40254657.91149962,
+        "cf": 438495784.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 592,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 2,
+        "cf": 29.0
+      },
+      {
+        "feature": "News_Power Lines",
+        "original": 2,
+        "cf": 29.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 878672.961427726,
+        "cf": 991719165.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 601,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 6709405.462789199,
+        "cf": 2699637431.0
+      },
+      {
+        "feature": "transition_1_7",
+        "original": 14644.868614196776,
+        "cf": 10450612.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 605,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_0_0",
+        "original": 54096481.31920891,
+        "cf": 3796713315.1
+      },
+      {
+        "feature": "transition_0_1",
+        "original": 6182623.783286869,
+        "cf": 3047731.0
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 238653.3209868188,
+        "cf": 68421317.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 610,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1314019.4249491673,
+        "cf": 43602615.7
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 57726504.29537211,
+        "cf": 390926074.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 614,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 36.0
+      },
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 35.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 188661.42798614505,
+        "cf": 548310387.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 616,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_5_0",
+        "original": 0.0,
+        "cf": 1333567.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 617,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 4910564.972587645,
+        "cf": 319034881.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 618,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 71597430.57019645,
+        "cf": 1376535449.3
+      },
+      {
+        "feature": "transition_1_2",
+        "original": 9725601.12384913,
+        "cf": 53246937.3
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 501170019.1253506,
+        "cf": 240439892.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 620,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 17.0
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 1234709574.7430897,
+        "cf": 1113228266.4
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 9577803.00177741,
+        "cf": 1357654967.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 626,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 19.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 19806733.03573696,
+        "cf": 37148628.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 630,
+    "original_prediction": 0,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_1_0",
+        "original": 1404703.8182093005,
+        "cf": 12926726.3
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 1093772280.4842014,
+        "cf": 429599161.2
+      },
+      {
+        "feature": "transition_3_3",
+        "original": 48461619.71428423,
+        "cf": 66219169.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 637,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 12577586.282322044,
+        "cf": 1664319868.0
+      },
+      {
+        "feature": "transition_1_5",
+        "original": 510716.90784125234,
+        "cf": 34146325.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 639,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 21.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 1314129.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 669,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 6.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 672,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 8754676.799749516,
+        "cf": 482562084.7
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 4536874.072603742,
+        "cf": 10437373.6
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 39879301.0749941,
+        "cf": 701629454.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 686,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_0",
+        "original": 108167.67125396727,
+        "cf": 1100570.4
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 13050223.151285084,
+        "cf": 549292720.7
+      },
+      {
+        "feature": "transition_6_5",
+        "original": 42441.89260864258,
+        "cf": 30730117.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 687,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 1,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 99655507.98078647,
+        "cf": 3525800747.8
+      },
+      {
+        "feature": "transition_0_6",
+        "original": 1777416.0461671418,
+        "cf": 5915761.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 688,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 25435.29800415039,
+        "cf": 21150868.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 703,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 23.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 12.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 705,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 30.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 629223.7647849288,
+        "cf": 467123983.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 711,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 25.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1830055.2232503856,
+        "cf": 187972950.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 714,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 31.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 166137.3158603444,
+        "cf": 16791898.1
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 308783.9708099365,
+        "cf": 262700675.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 718,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 6,
+        "cf": 53.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 6.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 723,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 2914782.383009189,
+        "cf": 21777236.7
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 6994428.570340057,
+        "cf": 1086524980.1
+      }
+    ]
+  },
+  {
+    "instance_idx": 732,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_5",
+        "original": 16135596.807876617,
+        "cf": 14714102.4
+      },
+      {
+        "feature": "transition_6_5",
+        "original": 2765618.1309616687,
+        "cf": 15889180.4
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 30496913.57463717,
+        "cf": 1896221297.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 735,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_1_4",
+        "original": 41655.686264038086,
+        "cf": 17967043.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 163715.62621307373,
+        "cf": 194198386.3
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 16808.175994873047,
+        "cf": 74340487.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 741,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 19.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 5112375.098631197,
+        "cf": 408073174.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 744,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 15.0
+      },
+      {
+        "feature": "transition_1_0",
+        "original": 72783.09247095445,
+        "cf": 5543907.2
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1658546.8501907047,
+        "cf": 452131132.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 759,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "transition_0_6",
+        "original": 21267.40739440918,
+        "cf": 2964287.2
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 10269782.964790344,
+        "cf": 891363896.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 768,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 4946614.3164814375,
+        "cf": 954860158.8
+      },
+      {
+        "feature": "transition_0_1",
+        "original": 402911.4641113281,
+        "cf": 3674655.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 776,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 236248.3456549252,
+        "cf": 189436391.1
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 12336.908645629885,
+        "cf": 16493791.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 787,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 584898.772111212,
+        "cf": 31195157.6
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 2111893.5958836274,
+        "cf": 282058697.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 793,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_0_0",
+        "original": 14186171.177421687,
+        "cf": 1765006225.1
+      },
+      {
+        "feature": "transition_1_2",
+        "original": 4028388.366372351,
+        "cf": 66859621.5
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 2320883.462128643,
+        "cf": 20443182.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 795,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 12.0
+      },
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 1158462.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 803,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 40.0
+      },
+      {
+        "feature": "transition_5_2",
+        "original": 17602.194854736328,
+        "cf": 113869016.5
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 8719800.792902209,
+        "cf": 1199708763.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 804,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 10.0
+      },
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 10.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 2640.581298828125,
+        "cf": 39597106.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 807,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 6.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 335751103.7902419,
+        "cf": 1553168902.8
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 491.9331207275391,
+        "cf": 29197093.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 811,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 40.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 4623734.6081085205,
+        "cf": 2465172969.9
+      },
+      {
+        "feature": "transition_1_0",
+        "original": 31079384.248046875,
+        "cf": 28249174.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 821,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 360002.98879241943,
+        "cf": 131422594.1
+      },
+      {
+        "feature": "transition_5_6",
+        "original": 3164.908622741699,
+        "cf": 186417.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 822,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 42619469.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 828,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 39.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 18.0
+      },
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 593007.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 836,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "transition_1_4",
+        "original": 4312156.472428654,
+        "cf": 22940964.6
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 69033932.1348057,
+        "cf": 363411434.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 855,
+    "original_prediction": 0,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 15.0
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 203361.5903356216,
+        "cf": 24172891.0
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 30198547.61303825,
+        "cf": 471368494.4
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 4402435.666256564,
+        "cf": 593280204.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 874,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_1_7",
+        "original": 20314.991424560547,
+        "cf": 6677438.3
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 224769.98270766315,
+        "cf": 532975409.2
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 444887.4588165283,
+        "cf": 925919064.5
+      },
+      {
+        "feature": "transition_2_6",
+        "original": 80246.99055480957,
+        "cf": 6406848.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 881,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 4.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 887,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 61560560.4622266,
+        "cf": 164605749.6
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 16967015.651659228,
+        "cf": 26843089.9
+      },
+      {
+        "feature": "transition_4_2",
+        "original": 10982747.403422909,
+        "cf": 109661517.7
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 96291168.10460372,
+        "cf": 235018269.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 888,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 10.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 11199012.51064184,
+        "cf": 573225629.3
+      },
+      {
+        "feature": "transition_6_1",
+        "original": 3982342.073212448,
+        "cf": 151357727.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 892,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 53.0
+      },
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 30.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 5642699.139845635,
+        "cf": 384789147.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 894,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 2,
+        "cf": 14.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 2054865.742141724,
+        "cf": 336233039.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 900,
+    "original_prediction": 0,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 1,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 1798755.4627864163,
+        "cf": 94369898.9
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 14227909.787664885,
+        "cf": 730116869.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 902,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_1_7",
+        "original": 532483.4633407593,
+        "cf": 968890.4
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 39024756.60925245,
+        "cf": 412215679.7
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 31793.009063720703,
+        "cf": 89199713.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 906,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 1,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 115983407.626354,
+        "cf": 348110542.1
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 6140.619987487793,
+        "cf": 18433268.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 910,
+    "original_prediction": 1,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_1_6",
+        "original": 2729.0923233032227,
+        "cf": 25347467.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 920,
+    "original_prediction": 1,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 4664397.565938583,
+        "cf": 367110893.0
+      },
+      {
+        "feature": "transition_2_5",
+        "original": 15797.277168273926,
+        "cf": 5974656.8
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 9361.70357989143,
+        "cf": 47687339.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 923,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_1_5",
+        "original": 257269.50370785585,
+        "cf": 42023147.9
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 788085.450553894,
+        "cf": 228950757.2
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 677764.1940307617,
+        "cf": 1089239342.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 925,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 17.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 63734999.4
+      }
+    ]
+  },
+  {
+    "instance_idx": 928,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Agriculture",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1313319.8412760417,
+        "cf": 578082005.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 937,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_0_0",
+        "original": 6411257.809904989,
+        "cf": 2032679160.9
+      },
+      {
+        "feature": "transition_1_4",
+        "original": 1810065.6905786253,
+        "cf": 81857725.5
+      },
+      {
+        "feature": "transition_6_5",
+        "original": 286484.8100652358,
+        "cf": 2099023.9
+      }
+    ]
+  },
+  {
+    "instance_idx": 939,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 160540.87879943848,
+        "cf": 554837453.6
+      },
+      {
+        "feature": "transition_2_2",
+        "original": 7607065.174263,
+        "cf": 640987176.8
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 41364001.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 942,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 15.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 956,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 2.0
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 337047236.20918465,
+        "cf": 178648142.2
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1977489.3216088389,
+        "cf": 152670685.5
+      },
+      {
+        "feature": "transition_5_3",
+        "original": 6541.519584655762,
+        "cf": 6085473.4
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 1545917.179463854,
+        "cf": 390414661.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 961,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "transition_3_8",
+        "original": 0.0,
+        "cf": 487592.4
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 672966.8973753985,
+        "cf": 505380609.7
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 59020586.93526133,
+        "cf": 502925519.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 969,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "transition_2_1",
+        "original": 5163575.147638926,
+        "cf": 446413913.4
+      },
+      {
+        "feature": "transition_2_4",
+        "original": 7850145.00667572,
+        "cf": 54237980.5
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 2994.238037109375,
+        "cf": 57654258.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 972,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 21012391.93003149,
+        "cf": 1231531975.7
+      },
+      {
+        "feature": "transition_4_1",
+        "original": 11399360.507800171,
+        "cf": 10530106.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 978,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 126681850.90402628,
+        "cf": 2162917157.2
+      },
+      {
+        "feature": "transition_1_1",
+        "original": 1198041731.7551117,
+        "cf": 3709227.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 979,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 5.0
+      },
+      {
+        "feature": "Reddit_Vehicles",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_6_6",
+        "original": 13313454.966459984,
+        "cf": 1836641949.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 982,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 56.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 78249634.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 996,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "Reddit_Power Lines",
+        "original": 0,
+        "cf": 11.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 0.0,
+        "cf": 119038429.9
+      },
+      {
+        "feature": "transition_7_2",
+        "original": 0.0,
+        "cf": 3438511.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 1001,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Power Lines",
+        "original": 8,
+        "cf": 2.0
+      },
+      {
+        "feature": "Reddit_Buildings",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 62107118.88461435,
+        "cf": 460414281.0
+      }
+    ]
+  },
+  {
+    "instance_idx": 1021,
+    "original_prediction": 2,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 34.0
+      },
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_5_1",
+        "original": 1749175.7786054723,
+        "cf": 406369316.3
+      }
+    ]
+  },
+  {
+    "instance_idx": 1026,
+    "original_prediction": 0,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 2,
+        "cf": 17.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 1671829.587214421,
+        "cf": 253632850.9
+      },
+      {
+        "feature": "transition_2_7",
+        "original": 2975.9969024658203,
+        "cf": 1102184.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 1028,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 30.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 8.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 24538748.467330392,
+        "cf": 1220868112.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 1034,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "Reddit_Trees",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 20132429.12157871,
+        "cf": 4543218071.0
+      },
+      {
+        "feature": "transition_1_7",
+        "original": 629134.3861999512,
+        "cf": 1602915.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 1040,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 55.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 29879415.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 1049,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 34.0
+      },
+      {
+        "feature": "News_Power Lines",
+        "original": 0,
+        "cf": 9.0
+      },
+      {
+        "feature": "transition_2_3",
+        "original": 0.0,
+        "cf": 371813.6
+      }
+    ]
+  },
+  {
+    "instance_idx": 1053,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "Reddit_Agriculture",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 23612023.081521217,
+        "cf": 1664445872.4
+      },
+      {
+        "feature": "transition_4_2",
+        "original": 36793403.95070992,
+        "cf": 555788633.2
+      }
+    ]
+  },
+  {
+    "instance_idx": 1058,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Trees",
+        "original": 0,
+        "cf": 14.0
+      },
+      {
+        "feature": "News_Vehicles",
+        "original": 0,
+        "cf": 4.0
+      },
+      {
+        "feature": "Reddit_Roofs",
+        "original": 0,
+        "cf": 3.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 207335.3133066514,
+        "cf": 304375239.5
+      }
+    ]
+  },
+  {
+    "instance_idx": 1060,
+    "original_prediction": 2,
+    "counterfactual_prediction": 0,
+    "changed_features": [
+      {
+        "feature": "News_Buildings",
+        "original": 0,
+        "cf": 43.0
+      },
+      {
+        "feature": "transition_2_1",
+        "original": 948854.165512085,
+        "cf": 339968850.6
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 20081.24468231201,
+        "cf": 10067976.7
+      }
+    ]
+  },
+  {
+    "instance_idx": 1070,
+    "original_prediction": 1,
+    "counterfactual_prediction": 1,
+    "changed_features": [
+      {
+        "feature": "News_Roofs",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_0_0",
+        "original": 113373462.96465255,
+        "cf": 2561321109.3
+      },
+      {
+        "feature": "transition_4_2",
+        "original": 83575433.81829466,
+        "cf": 178003664.1
+      },
+      {
+        "feature": "transition_5_2",
+        "original": 160332471.90978333,
+        "cf": 106510876.8
+      }
+    ]
+  },
+  {
+    "instance_idx": 1073,
+    "original_prediction": 2,
+    "counterfactual_prediction": 2,
+    "changed_features": [
+      {
+        "feature": "News_Infrastructure",
+        "original": 0,
+        "cf": 7.0
+      },
+      {
+        "feature": "Reddit_Infrastructure",
+        "original": 0,
+        "cf": 1.0
+      },
+      {
+        "feature": "transition_8_3",
+        "original": 0.0,
+        "cf": 61296950.3
+      }
+    ]
+  }
+]
