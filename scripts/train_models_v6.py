@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 DATA_PATH = "../data/data_features.csv"
 GROUPINGS_PATH = "../assets/groupings/feature_groupings.csv"
 DAG_PATH = "../assets/dags/dag_structures.json"
-OUTPUT_BASE = "../assets/full_features_v6"
+OUTPUT_BASE = "../assets/full_features_dummy"
 TARGET_COL = "Property_Damage_GT"
 PRIMARY_METRIC = "accuracy"  # Options: accuracy, f1_macro, f1_micro, precision_macro, recall_macro
 
@@ -261,6 +261,13 @@ if __name__ == "__main__":
     valid_feats = set(groupings["Feature"])
     input_features = [c for c in df.columns if c in valid_feats and c != TARGET_COL]
     df_model = df[input_features + [TARGET_COL]].copy()
+    
+    # label_encoder = LabelEncoder()
+    # y = label_encoder.fit_transform(df_model[TARGET_COL])
+    # # Print mappings
+    # for cls, label in zip(label_encoder.classes_, label_encoder.transform(label_encoder.classes_)):
+    #     print(f"{cls} → {label}")
+
     y = LabelEncoder().fit_transform(df_model[TARGET_COL])
     X = df_model[input_features]
 

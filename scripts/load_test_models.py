@@ -69,7 +69,7 @@ def evaluate_loaded_scm_models(X, y, parents_dict, train_idx, test_idx, model_di
     node_order = topological_sort(parents_dict)
     all_metrics = {}
 
-    # ✅ Load and apply saved scaler
+    # Load and apply saved scaler
     scaler_path = os.path.join(model_dir, "models", "scaler.joblib")
     if os.path.exists(scaler_path):
         scaler = joblib.load(scaler_path)
