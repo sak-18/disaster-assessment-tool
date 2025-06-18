@@ -1,212 +1,228 @@
+#!/usr/bin/env python
+"""
+recourse_and_lollipop.py (v13)
+================================
+Generate counterfactual recourses for a trained classifier and visualise
+feature changes with a lollipop chart. Now attempts recourses to both
+alternative classes and checks whether the desired class was reached.
+"""
+
 import os
 import json
 import joblib
-import numpy as np
 import pandas as pd
-from collections import defaultdict
-from sklearn.preprocessing import RobustScaler
-import random
+import numpy as np
+import matplotlib.pyplot as plt
+import warnings
+from typing import Literal
 
-# ------------------ CONFIG ------------------ #
-ASSETS_DIR = "../assets/full_features_v6"
-RECOURSE_SAVE_DIR = "../recourse_final"
-DATA_PATH = "../data/data_features.csv"
-GROUPINGS_PATH = "../assets/groupings/feature_groupings.csv"
-DAG_PATH = "../assets/dags/dag_structures.json"
-TARGET_COL = "Property_Damage_GT"
-DESIRED_CLASS = 0
-MAX_TOTAL_CHANGE = 2.5
-DELTA_FRACTION = 0.3
-PERTURBATION = 0.5
-MAX_ATTEMPTS = 10
+warnings.filterwarnings("ignore", message=r"X has feature names, but .* was fitted without feature names")
 
-# ------------------ LOADERS ------------------ #
-def load_assets():
+# ------------------ CONFIG ------------------
+ASSETS_DIR: str = "../assets/full_features"
+DATA_PATH: str = "../data/data_features.csv"
+N_POOL_DEFAULT: int = 150
+EXCLUDE_SUFFIXES: tuple[str, ...] = ("_Fatalities", "_Injuries")
+
+# ------------------ HELPERS ------------------
+
+def _load_assets():
     model = joblib.load(os.path.join(ASSETS_DIR, "model.joblib"))
     scaler = joblib.load(os.path.join(ASSETS_DIR, "scaler.joblib"))
     with open(os.path.join(ASSETS_DIR, "model_config.json")) as f:
         cfg = json.load(f)
+    return model, scaler, cfg
+
+def _prepare_dice_objects(df_train: pd.DataFrame, cfg: dict, model):
+    import dice_ml
+    target = cfg["target_column"]
+    input_cols = cfg["input_features"]
+    cat_feats = [c for c in input_cols if str(df_train[c].dtype) == "object"]
+    cont_feats = [c for c in input_cols if c not in cat_feats]
+
+    dice_data = dice_ml.Data(
+        dataframe=df_train[input_cols + [target]],
+        continuous_features=cont_feats,
+        categorical_features=cat_feats,
+        outcome_name=target,
+    )
+    dice_model = dice_ml.Model(model=model, backend="sklearn")
+    return dice_data, dice_model
+
+def _load_indices(path: str):
+    return pd.read_csv(path, header=None).iloc[:, 0].tolist()
+
+def _filter_irrelevant(cols: list[str]) -> list[str]:
+    return [c for c in cols if not any(c.endswith(suf) for suf in EXCLUDE_SUFFIXES)]
+
+# ------------------ RECOURSE FUNCTION ------------------
+
+def generate_recourse(
+    instance_idx: int,
+    desired_class: int,
+    *,
+    instance_is_test: bool = True,
+    features_to_vary: str | list[str] = "all",
+    min_changes: int = 1,
+    max_changes: int = 10,
+    n_pool: int = N_POOL_DEFAULT,
+    proximity_w: float = 0.5,
+    diversity_w: float = 1.0,
+    distance_metric: Literal["scaled_l1", "avg_percent_change"] = "scaled_l1",
+    adaptive: bool = True,
+    max_attempts: int = 4,
+    pool_growth: int = 2,
+):
+    import dice_ml
+    from dice_ml import Dice
+
+    if min_changes < 1 or min_changes > max_changes:
+        raise ValueError("min_changes must satisfy 1 ≤ min_changes ≤ max_changes")
+
+    model, scaler, cfg = _load_assets()
     df = pd.read_csv(DATA_PATH, dtype={"FIPS": str})
-    test_idx = np.loadtxt(os.path.join(ASSETS_DIR, "final_test_indices.txt"), dtype=int)
+    X_cols = cfg["input_features"]
 
-    input_cols = cfg.get("features")
-    if input_cols is None:
-        print("⚠️  'features' not found in model_config.json, falling back to groupings.")
-        groupings = pd.read_csv(GROUPINGS_PATH)
-        valid_feats = set(groupings["Feature"])
-        input_cols = [c for c in df.columns if c in valid_feats and c != TARGET_COL]
+    idx_file = os.path.join(
+        ASSETS_DIR,
+        "final_test_indices.txt" if instance_is_test else "final_train_indices.txt",
+    )
+    test_idx = _load_indices(idx_file)
+    df_train = df.drop(index=test_idx)
 
-    return model, scaler, cfg, df, test_idx, input_cols
+    dice_data, dice_model = _prepare_dice_objects(df_train, cfg, model)
+    original_row = df.loc[instance_idx, X_cols]
 
+    vary_cols = _filter_irrelevant(X_cols) if features_to_vary == "all" else _filter_irrelevant(list(features_to_vary))
 
-def load_scm_models(scm_dir):
-    scm_models, epsilons = {}, {}
-    for fname in os.listdir(scm_dir):
-        if fname.endswith(".joblib"):
-            node = fname.replace(".joblib", "")
-            scm_models[node] = joblib.load(os.path.join(scm_dir, fname))
-        elif fname.startswith("eps_test"):
-            node = fname.replace("eps_test_", "").replace(".npy", "")
-            epsilons[node] = np.load(os.path.join(scm_dir, fname))
-    return scm_models, epsilons
+    attempt = 0
+    while attempt < max_attempts:
+        attempt += 1
+        explainer = Dice(dice_data, dice_model, method="random")
+        cf_res = explainer.generate_counterfactuals(
+            query_instances=original_row.to_frame().T,
+            total_CFs=n_pool,
+            desired_class=desired_class,
+            features_to_vary=vary_cols,
+            proximity_weight=proximity_w,
+            diversity_weight=diversity_w,
+        )
+        cf_df = cf_res.cf_examples_list[0].final_cfs_df[X_cols].copy()
+        cf_df["n_changes"] = cf_df.apply(lambda r: (r != original_row).sum(), axis=1)
+        feasible = cf_df[(cf_df["n_changes"] >= min_changes) & (cf_df["n_changes"] <= max_changes)].copy()
 
-def load_feature_groups():
-    df = pd.read_csv(GROUPINGS_PATH)
-    group_map = defaultdict(list)
-    for _, row in df.iterrows():
-        group_map[row["Group"]].append(row["Feature"])
-    return group_map
+        if not feasible.empty:
+            break
+        if not adaptive:
+            raise ValueError("No feasible CFs. Try increasing pool size or range.")
+        n_pool *= pool_growth
 
-# ------------------ DAG EXPANSION & TOPO SORT ------------------ #
-def expand_group_dag_to_parents(dag_json, groupings, target_col):
-    group_to_features = defaultdict(list)
-    for _, row in groupings.iterrows():
-        group_to_features[row["Group"]].append(row["Feature"])
-    dag_parents = defaultdict(list)
-    for src_group, tgt_groups in dag_json.items():
-        src_feats = group_to_features.get(src_group, [])
-        for tgt_group in tgt_groups:
-            tgt_feats = group_to_features.get(tgt_group, [])
-            for tgt_feat in tgt_feats:
-                dag_parents[tgt_feat].extend(src_feats)
-    dag_parents.setdefault(target_col, [])
-    for src_group, tgt_groups in dag_json.items():
-        if target_col in tgt_groups:
-            dag_parents[target_col].extend(group_to_features.get(src_group, []))
-    for node in dag_parents:
-        dag_parents[node] = list(set(dag_parents[node]))
-    return dag_parents
+    if feasible.empty:
+        raise ValueError("No counterfactual found after max attempts.")
 
-def topological_sort(parents_dict):
-    all_nodes = set(parents_dict.keys()) | {p for ps in parents_dict.values() for p in ps}
-    in_deg = {node: 0 for node in all_nodes}
-    for children in parents_dict.values():
-        for child in children:
-            in_deg[child] += 1
-    queue = [node for node, deg in in_deg.items() if deg == 0]
-    sorted_nodes = []
-    while queue:
-        node = queue.pop(0)
-        sorted_nodes.append(node)
-        for child, parents in parents_dict.items():
-            if node in parents:
-                in_deg[child] -= 1
-                if in_deg[child] == 0:
-                    queue.append(child)
-    return [n for n in sorted_nodes if n in parents_dict]
-
-# ------------------ UTILS ------------------ #
-def is_valid_change(x_orig_scaled, x_cf_scaled, scaler, feat_indices):
-    x_orig_raw = scaler.inverse_transform([x_orig_scaled])[0]
-    x_cf_raw = scaler.inverse_transform([x_cf_scaled])[0]
-    if np.any(x_cf_raw[feat_indices] < 0):
-        return False
-    max_deltas = DELTA_FRACTION * np.maximum(np.abs(x_orig_raw), 1e-5)
-    deltas = np.abs(x_cf_raw - x_orig_raw)
-    if np.any(deltas > max_deltas):
-        return False
-    normed_total_change = np.sum(deltas / (max_deltas + 1e-5))
-    return normed_total_change <= MAX_TOTAL_CHANGE
-
-def simulate_forward(x_cf_df, epsilons_i, scm_models, dag, intervention_set):
-    x_new = x_cf_df.copy()
-    for node in topological_sort(dag):
-        if node in intervention_set:
-            continue
-        parents = dag.get(node, [])
-        if not all(p in x_new.columns for p in parents):
-            continue
-        pred = scm_models[node].predict(x_new[parents].values.reshape(1, -1))[0]
-        x_new[node] = pred + epsilons_i.get(node, 0)
-    return x_new
-
-# ------------------ MAIN ------------------ #
-def run_groupwise_recourse(case=2):
-    os.makedirs(RECOURSE_SAVE_DIR, exist_ok=True)
-    model, scaler, cfg, df, test_idx, input_cols = load_assets()
-    group_map = load_feature_groups()
-
-    if case == 1:
-        scm_models, epsilons, dag_parents = None, None, {}
+    if distance_metric == "scaled_l1":
+        scale = getattr(scaler, "scale_", np.ones(len(X_cols)))
+        feasible["dist"] = feasible[X_cols].sub(original_row).abs().div(scale).sum(axis=1)
+    elif distance_metric == "avg_percent_change":
+        denom = np.abs(original_row) + 1e-8
+        feasible["dist"] = (feasible[X_cols] - original_row).abs().div(denom).mean(axis=1)
     else:
-        # ✅ Correct key mapping to dag_structures.json
-        dag_key = {
-            2: "DAG_1_Independent",
-            3: "DAG_3_Flood_Driven"
-        }[case]
-        with open(DAG_PATH) as f:
-            all_dags = json.load(f)
-        dag_struct = all_dags[dag_key]
+        raise ValueError("Unsupported distance_metric: " + distance_metric)
 
-        scm_dir = os.path.join(ASSETS_DIR, f"scm_{dag_key.lower()}")
-        scm_models, epsilons = load_scm_models(scm_dir)
+    best_cf_row = feasible.sort_values("dist").iloc[0]
 
-        groupings = pd.read_csv(GROUPINGS_PATH)
-        dag_parents = expand_group_dag_to_parents(dag_struct, groupings, TARGET_COL)
+    changed = [c for c in X_cols if original_row[c] != best_cf_row[c]]
+    deltas = (
+        pd.DataFrame({
+            "feature": changed,
+            "original": original_row[changed].values,
+            "cf": best_cf_row[changed].values,
+        })
+        .sort_values("feature")
+        .reset_index(drop=True)
+    )
 
-    for i, idx in enumerate(test_idx[:1]):  # loop more by increasing the range
-        x_orig = df.loc[idx, input_cols]
-        x_orig_scaled = scaler.transform([x_orig])[0]
-        eps_i = {k: epsilons[k][i] for k in epsilons} if epsilons else {}
+    return best_cf_row, deltas
 
-        for k in range(1, 4):  # groupwise 1, 2, 3
-            for attempt in range(MAX_ATTEMPTS):
-                intervention_set = []
-                x_cf_scaled = x_orig_scaled.copy()
+# ------------------ VISUALIZATION ------------------
 
-                for group, features in group_map.items():
-                    feats = [f for f in features if f in input_cols]
-                    if len(feats) < k:
-                        continue
-                    chosen = random.sample(feats, k)
-                    for feat in chosen:
-                        j = input_cols.index(feat)
-                        delta = random.choice([-PERTURBATION, PERTURBATION])
-                        x_cf_scaled[j] += delta
-                        intervention_set.append(feat)
+def plot_lollipop(deltas: pd.DataFrame, *, title: str = "Counterfactual Recourse", figsize: tuple[int, int] = (7, 5), savepath: str | None = None, show: bool = True):
+    plt.figure(figsize=figsize)
+    y_pos = np.arange(len(deltas))
+    for i, (_, row) in enumerate(deltas.iterrows()):
+        plt.annotate("", xy=(row["cf"], i), xytext=(row["original"], i),
+                     arrowprops=dict(arrowstyle="->", color="red", lw=1.5))
+        plt.scatter(row["original"], i, s=45, color="black", zorder=3)
+        plt.scatter(row["cf"], i, s=45, color="red", zorder=3)
+    plt.yticks(y_pos, deltas["feature"])
+    plt.xlabel("Value")
+    plt.title(title)
+    plt.grid(axis="x", ls="--", alpha=0.4)
+    plt.tight_layout()
+    if savepath:
+        plt.savefig(savepath, dpi=300, bbox_inches="tight")
+    if show:
+        plt.show()
+    else:
+        plt.close()
 
-                feat_indices = [input_cols.index(f) for f in intervention_set]
-                if not is_valid_change(x_orig_scaled, x_cf_scaled, scaler, feat_indices):
-                    continue
-
-                x_cf_df = pd.DataFrame([x_cf_scaled], columns=input_cols)
-
-                if case == 1:
-                    x_cf_final = x_cf_df
-                else:
-                    x_cf_sim = simulate_forward(x_cf_df.copy(), eps_i, scm_models, dag_parents, set(intervention_set))
-                    x_cf_final = scaler.transform(x_cf_sim[input_cols])
-
-                y_pred = model.predict(x_cf_final)[0]
-                y_orig = model.predict([x_orig_scaled])[0]
-
-                if y_pred != y_orig and y_pred == DESIRED_CLASS:
-                    print(f"✓ Recourse for instance {idx}, groupwise k={k}, attempt {attempt}, case={case}")
-                    changes = x_cf_df[input_cols].iloc[0] - x_orig
-                    print("Changed features:", changes[changes != 0])
-
-                    out_data = {
-                        "instance_index": int(idx),
-                        "case": case,
-                        "original_prediction": int(y_orig),
-                        "recourse_prediction": int(y_pred),
-                        "intervention_set": intervention_set,
-                        "changed_features": {
-                            feat: {
-                                "original": float(x_orig[feat]),
-                                "cf": float(x_cf_df[feat].iloc[0])
-                            }
-                            for feat in intervention_set
-                            if x_orig[feat] != x_cf_df[feat].iloc[0]
-                        }
-                    }
-                    save_path = os.path.join(RECOURSE_SAVE_DIR, f"case_{case}_instance_{idx}.json")
-                    with open(save_path, "w") as f:
-                        json.dump(out_data, f, indent=2)
-                    print(f"✓ Saved to {save_path}")
-                    return
-
-    print("No valid recourse found.")
+# ------------------ MAIN ------------------
 
 if __name__ == "__main__":
-    run_groupwise_recourse(case=2)
+    print("Running recourse generation...")
+    os.makedirs("../lollipop_charts", exist_ok=True)
+
+    model, scaler, cfg = _load_assets()
+    df = pd.read_csv(DATA_PATH, dtype={"FIPS": str})
+    X_cols = cfg["input_features"]
+    idx_file = os.path.join(ASSETS_DIR, "final_test_indices.txt")
+    test_indices = _load_indices(idx_file)
+
+    output_data = []
+
+    for idx in test_indices:
+        try:
+            original_row = df.loc[idx, X_cols]
+            original_scaled = scaler.transform([original_row])[0]
+            original_pred = model.predict([original_scaled])[0]
+
+            for desired_class in {0, 1, 2} - {original_pred}:
+                try:
+                    cf_row, deltas = generate_recourse(
+                        instance_idx=idx,
+                        desired_class=desired_class,
+                        min_changes=3,
+                        max_changes=10,
+                        instance_is_test=True
+                    )
+                    cf_scaled = scaler.transform([cf_row[X_cols].values])[0]
+                    cf_pred = model.predict([cf_scaled])[0]
+
+                    if cf_pred != desired_class:
+                        print(f"⚠️ CF for {idx} failed to reach class {desired_class} (got {cf_pred})")
+                        continue
+
+                    output_data.append({
+                        "instance_idx": int(idx),
+                        "original_prediction": int(original_pred),
+                        "desired_class": int(desired_class),
+                        "counterfactual_prediction": int(cf_pred),
+                        "changed_features": deltas.to_dict(orient="records")
+                    })
+
+                    plot_lollipop(
+                        deltas,
+                        title=f"Recourse for instance {idx} to class {desired_class}",
+                        savepath=f"../lollipop_charts/lollipop_{idx}_to_{desired_class}.png",
+                        show=False
+                    )
+                except Exception as e_inner:
+                    print(f"⚠️ Failed CF for instance {idx} to class {desired_class}: {e_inner}")
+
+        except Exception as e:
+            print(f"⚠️ Failed on instance {idx}: {e}")
+
+    with open("../recourse_results.json", "w") as f:
+        json.dump(output_data, f, indent=2)
+
+    print("✓ Recourse generation complete.")
