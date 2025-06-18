@@ -11,7 +11,7 @@ from sklearn.preprocessing import LabelEncoder, RobustScaler
 DATA_PATH = "../data/data_features.csv"
 GROUPINGS_PATH = "../assets/groupings/feature_groupings.csv"
 DAG_PATH = "../assets/dags/dag_structures.json"
-OUTPUT_BASE = "../assets/full_features_v6"
+OUTPUT_BASE = "../assets/full_features"
 TARGET_COL = "Property_Damage_GT"
 
 # ------------------ DAG HELPERS ------------------ #

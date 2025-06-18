@@ -11,7 +11,7 @@ from sklearn.preprocessing import LabelEncoder, RobustScaler
 DATA_PATH = "../data/data_features.csv"
 GROUPINGS_PATH = "../assets/groupings/feature_groupings.csv"
 DAG_PATH = "../assets/dags/dag_structures.json"
-OUTPUT_BASE = "../assets/full_features_v6"
+OUTPUT_BASE = "../assets/full_features"
 TARGET_COL = "Property_Damage_GT"
 
 # ------------------ DAG HELPERS ------------------ #
@@ -80,30 +80,18 @@ def load_scm_components(model_dir):
     scaler = joblib.load(os.path.join(model_dir, "models", "scaler.joblib"))
     return models, configs, epsilons, scaler
 
-# ------------------ SCM EVALUATION ------------------ #
-def evaluate_loaded_scm_models(X, y, parents_dict, train_idx, test_idx, model_dir):
-    X_train, X_test = X.iloc[train_idx].copy(), X.iloc[test_idx].copy()
-    y_train, y_test = y[train_idx], y[test_idx]
-    node_order = topological_sort(parents_dict)
+def predict_label(instance_df, models, configs, target_col):
+    instance = instance_df.copy()
+    top_order = [k for k in configs.keys()]
+    top_order.sort()  # assumes proper order; replace with topological_sort if needed
 
-    scaler = joblib.load(os.path.join(model_dir, "models", "scaler.joblib"))
-    X_train[X_train.columns] = scaler.transform(X_train[X_train.columns])
-    X_test[X_test.columns] = scaler.transform(X_test[X_test.columns])
+    for node in top_order:
+        parents = configs[node]["input_features"]
+        pred = models[node].predict(instance[parents])[0]
+        instance[node] = pred
 
-    for node in node_order:
-        model = joblib.load(os.path.join(model_dir, "models", f"{node}.joblib"))
-        with open(os.path.join(model_dir, "models", f"{node}_model_config.json")) as f:
-            model_config = json.load(f)
-        parents = model_config["input_features"]
+    return instance[target_col].values[0]
 
-        if node == TARGET_COL:
-            preds = model.predict(X_test[parents])
-            acc = accuracy_score(y_test, preds)
-            f1 = f1_score(y_test, preds, average="macro")
-            print(f"[LOADED SCM {node}] acc_te={acc:.4f}, f1_te={f1:.4f}")
-        X_test[node] = model.predict(X_test[parents])
-
-    return X_test, scaler
 
 # ------------------ INTERVENTION & CF GENERATION ------------------ #
 def do_intervention(instance, interventions):
@@ -113,7 +101,7 @@ def do_intervention(instance, interventions):
 
 def abduction_action_prediction(instance, models, epsilons, configs, top_order, interventions):
     for node in top_order:
-        if node in interventions or node not in epsilons:
+        if node in interventions:
             continue
         parents = configs[node]["input_features"]
         pred = models[node].predict(instance[parents])[0]
@@ -122,70 +110,60 @@ def abduction_action_prediction(instance, models, epsilons, configs, top_order, 
 
 # ------------------ MAIN FUNCTION ------------------ #
 def run_scm_counterfactual_simulation(original_sample, interventions_raw, dag_key, dag_path=DAG_PATH):
-    df = pd.read_csv(DATA_PATH, dtype={"FIPS": str})
-    groupings = pd.read_csv(GROUPINGS_PATH)
-    transition_cols = [c for c in df.columns if c.startswith("transition_")]
-    df[transition_cols] = df[transition_cols].div(df["county_area_m2"].replace(0, np.nan), axis=0)
-    df = df.fillna(0)
-
-    valid_feats = set(groupings["Feature"])
-    input_features = [c for c in df.columns if c in valid_feats and c != TARGET_COL]
-    df_model = df[input_features + [TARGET_COL]].copy()
+    input_features = ['Num_News', 'Num_Reddit', 'News_Trees', 'Reddit_Trees', 'News_Power Lines', 'Reddit_Power Lines', 'News_Roofs', 'Reddit_Roofs', 'News_Buildings', 'Reddit_Buildings', 'News_Vehicles', 'Reddit_Vehicles', 'News_Agriculture', 'Reddit_Agriculture', 'News_Infrastructure', 'Reddit_Infrastructure', 'transition_0_0', 'transition_0_1', 'transition_0_2', 'transition_0_3', 'transition_0_4', 'transition_0_5', 'transition_0_6', 'transition_0_7', 'transition_0_8', 'transition_1_0', 'transition_1_1', 'transition_1_2', 'transition_1_3', 'transition_1_4', 'transition_1_5', 'transition_1_6', 'transition_1_7', 'transition_1_8', 'transition_2_0', 'transition_2_1', 'transition_2_2', 'transition_2_3', 'transition_2_4', 'transition_2_5', 'transition_2_6', 'transition_2_7', 'transition_2_8', 'transition_3_0', 'transition_3_1', 'transition_3_2', 'transition_3_3', 'transition_3_4', 'transition_3_5', 'transition_3_6', 'transition_3_7', 'transition_3_8', 'transition_4_0', 'transition_4_1', 'transition_4_2', 'transition_4_3', 'transition_4_4', 'transition_4_5', 'transition_4_6', 'transition_4_7', 'transition_4_8', 'transition_5_0', 'transition_5_1', 'transition_5_2', 'transition_5_3', 'transition_5_4', 'transition_5_5', 'transition_5_6', 'transition_5_7', 'transition_5_8', 'transition_6_0', 'transition_6_1', 'transition_6_2', 'transition_6_3', 'transition_6_4', 'transition_6_5', 'transition_6_6', 'transition_6_7', 'transition_6_8', 'transition_7_0', 'transition_7_1', 'transition_7_2', 'transition_7_3', 'transition_7_4', 'transition_7_5', 'transition_7_6', 'transition_7_7', 'transition_7_8', 'transition_8_0', 'transition_8_1', 'transition_8_2', 'transition_8_3', 'transition_8_4', 'transition_8_5', 'transition_8_6', 'transition_8_7', 'transition_8_8']
 
     label_encoder = LabelEncoder()
-    y = label_encoder.fit_transform(df_model[TARGET_COL])
-    X = df_model[input_features]
-
-    train_idx = np.loadtxt(os.path.join(OUTPUT_BASE, "final_train_indices.txt"), dtype=int)
-    test_idx = np.loadtxt(os.path.join(OUTPUT_BASE, "final_test_indices.txt"), dtype=int)
-
-    with open(dag_path) as f:
-        dag_structs = json.load(f)
-
+    label_encoder.classes_ = np.array(["High", "Low", "Medium"])
+   
     model_dir = os.path.join(OUTPUT_BASE, f"scm_{dag_key.lower()}")
-    parents_dict = expand_group_dag_to_parents(dag_structs[dag_key], groupings, TARGET_COL)
-
-    print(f"\n=== Evaluating SCM Models for {dag_key} ===")
-    _, scaler = evaluate_loaded_scm_models(X, y, parents_dict, train_idx, test_idx, model_dir)
 
     models, configs, epsilons, scaler = load_scm_components(model_dir)
     top_order = topological_sort({k: v["input_features"] for k, v in configs.items()})
 
     original = pd.DataFrame([original_sample])
-    print("--- Original Unscaled Feature Values ---")
-    for var in interventions_raw:
-        print(f"{var}: {original[var].values[0]}")
-
-    print("\n--- Raw Intervention Values ---")
-    for k, v in interventions_raw.items():
-        print(f"{k}: new_value={v:.2f}")
-
     scaled_input = original[input_features].copy()
     scaled_input[input_features] = scaler.transform(scaled_input[input_features])
 
+    # print("--- Original Unscaled Feature Values ---")
+    # for var in interventions_raw:
+    #     print(f"{var}: {original[var].values[0]}")
+
+    # print("\n--- Raw Intervention Values ---")
+    # for k, v in interventions_raw.items():
+    #     print(f"{k}: new_value={v:.2f}")
+
     scaled_interventions = {}
+    temp = original[input_features].copy()
+
+    # Apply raw (unscaled) intervention values
     for var, new_val in interventions_raw.items():
-        temp = original[input_features].copy()
         temp[var] = new_val
-        temp_scaled = scaler.transform([temp.values[0]])
-        idx = list(scaler.feature_names_in_).index(var)
-        scaled_interventions[var] = temp_scaled[0][idx]
+
+    # Scale the entire row
+    temp[input_features] = scaler.transform(temp[input_features])
+
+    # Extract the scaled values for the intervened variables
+    for var in interventions_raw:
+        scaled_interventions[var] = temp[var].values[0]
+
 
     counterfactual = do_intervention(scaled_input.copy(), scaled_interventions)
     counterfactual = abduction_action_prediction(counterfactual, models, epsilons, configs, top_order, scaled_interventions)
 
-    print("\n--- Scaled Interventions Applied ---")
-    for var in scaled_interventions:
-        print(f"{var}: original_scaled={scaled_input[var].values[0]:.4f}, new_scaled={scaled_interventions[var]:.4f}")
+    # print("\n--- Scaled Interventions Applied ---")
+    # for var in scaled_interventions:
+    #     print(f"{var}: original_scaled={scaled_input[var].values[0]:.4f}, new_scaled={scaled_interventions[var]:.4f}")
 
-    original_label = original[TARGET_COL].values[0]
+    label_id = predict_label(scaled_input, models, configs, TARGET_COL)
+    original_label = label_encoder.inverse_transform([label_id])[0]
+
     counterfactual_numeric = counterfactual[TARGET_COL].values[0]
     counterfactual_label = label_encoder.inverse_transform([counterfactual_numeric])[0]
 
     print(f"\nOriginal Prediction: {original_label}")
     print(f"Counterfactual Prediction: {counterfactual_label}")
 
-    return counterfactual_label, counterfactual
+    return counterfactual_label, original_label
 
 # ------------------ USAGE EXAMPLE ------------------ #
 if __name__ == "__main__":
@@ -203,15 +181,18 @@ if __name__ == "__main__":
     input_test = df_model.iloc[test_idx].copy()
 
     original = input_test.iloc[[10]].copy()
+
+    #-----
+    
     sample_dict = original.iloc[0].to_dict()
     interventions = {
-        "transition_6_0": 0.0003477482118824513,
-        "transition_6_1": 0.053124150408457846
+        "transition_6_0": 10,
+        "transition_3_6": 10
     }
 
     run_scm_counterfactual_simulation(
         original_sample=sample_dict,
         interventions_raw=interventions,
-        # dag_key="DAG_2_Infrastructure_Mediator"
-        dag_key="DAG_1_Independent"
+        dag_key="DAG_2_Infrastructure_Mediator"
+        # dag_key="DAG_1_Independent"
     )
